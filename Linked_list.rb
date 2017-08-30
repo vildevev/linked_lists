@@ -30,7 +30,7 @@ class Linked_list
 		current_node.next_node = Node.new(value, current_node.next_node)
 	end 
 
-	# Deletes a node that has the value inputted
+	# Deletes a node that has the value inputted, if none exist, return false
 	def delete(value)
 		current_node = @head 
 		if current_node.value == value 
@@ -41,6 +41,33 @@ class Linked_list
 			current_node = current_node.next_node
 		end 
 		current_node.next_node = current_node.next_node.next_node
+	end 
+
+	# Find last node in list, returns the node
+	def find_last 
+		current_node = @head
+		until current_node.next_node == nil 
+			current_node = current_node.next_node
+		end 
+		current_node
+	end 
+
+	# Add node to the end of the list 
+	def push(value)
+		last_node = find_last
+		last_node.next_node = Node.new(value)
+	end 
+
+	# Remove last node from the list 
+	def pop
+		current_node = @head 
+		if current_node.next_node == nil 
+			@head = nil 
+		end 
+		until current_node.next_node.next_node == nil 
+			current_node = current_node.next_node
+		end 
+		current_node.next_node = nil 
 	end 
 
 end 
