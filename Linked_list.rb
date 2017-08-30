@@ -71,12 +71,24 @@ class Linked_list
 	end 
 
 	# Reverse a linked list
-	def reverse 
-		# RECURSION?
-			# create a new list, set last_node equal to @head 
-			# edge case: if original list only contains one object
-			# need to check if new list has already been created, else create a new list every time
-			# in existing list, set next to last nodes next_node equal to nil 
+	def reverse(head = @head, reversed_head_node = nil) 
+		if head.next_node == nil 
+			if reversed_head_node == nil 
+				reversed_head_node = head 
+			else 
+				head.next_node = reversed_head_node
+				reversed_head_node = head 
+			end 
+		else 
+			reversed_head_node = Node.new(head.value, reversed_head_node)
+			return reverse(head.next_node, reversed_head_node)
+		end 
+		@head = reversed_head_node
+	end 
+
+	# Create a new list which is a copy 
+	def copy_list 
+
 	end 
 
 end 
